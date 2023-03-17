@@ -4,7 +4,11 @@
         "**/*.d.ts"
     ],
     "presets": [
-        "transform-ui5",
+        [
+            "transform-ui5", {
+                "noWrapBeforeImport": true
+            }
+        ],
         "@babel/preset-typescript"
     ]
 }
