@@ -6,6 +6,12 @@ import "./pages/App";
 
 QUnit.module("Hello");
 
+// TODO: add this configuration to an "AllJourneys" startpoint
+Opa5.extendConfig({
+	viewNamespace: "ui5.typescript.helloworld.view.",
+	autoWait: true
+});
+
 opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
 
 	// Arrangements
