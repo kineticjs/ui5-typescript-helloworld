@@ -1,52 +1,55 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import opaTest from "sap/ui/test/opaQunit";
 import Opa5 from "sap/ui/test/Opa5";
-import { When, Then } from "./pages/AllPages";
 import "./pages/App";
+import { AppPageActions, AppPageAssertions } from "./pages/App";
+
+const appActions = new AppPageActions();
+const appAssertions = new AppPageAssertions();
 
 QUnit.module("Hello");
 
-opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
+opaTest("Should open the Hello dialog", function (opa: Opa5) {
 
 	// Arrangements
-	Given.iStartMyUIComponent({
+	opa.iStartMyUIComponent({
 		componentConfig: {
 			name: "ui5.typescript.helloworld"
 		}
 	});
 
 	//Actions
-	When.onTheAppPage.iPressTheSayHelloWithDialogButton();
+	appActions.iPressTheSayHelloWithDialogButton();
 
 	// Assertions
-	Then.onTheAppPage.iShouldSeeTheHelloDialog();
+	appAssertions.iShouldSeeTheHelloDialog();
 
 	//Actions
-	When.onTheAppPage.iPressTheOkButtonInTheDialog();
+	appActions.iPressTheOkButtonInTheDialog();
 
 	// Assertions
-	Then.onTheAppPage.iShouldNotSeeTheHelloDialog();
+	appAssertions.iShouldNotSeeTheHelloDialog();
 
 	// Cleanup
-	Then.iTeardownMyApp();
+	opa.iTeardownMyApp();
 });
 
-opaTest("Should close the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
+opaTest("Should close the Hello dialog", function (opa: Opa5) {
 
 	// Arrangements
-	Given.iStartMyUIComponent({
+	opa.iStartMyUIComponent({
 		componentConfig: {
 			name: "ui5.typescript.helloworld"
 		}
 	});
 
 	//Actions
-	When.onTheAppPage.iPressTheSayHelloWithDialogButton()
+	appActions.iPressTheSayHelloWithDialogButton()
 		.and.iPressTheOkButtonInTheDialog();
 
 	// Assertions
-	Then.onTheAppPage.iShouldNotSeeTheHelloDialog();
+	appAssertions.iShouldNotSeeTheHelloDialog();
 
 	// Cleanup
-	Then.iTeardownMyApp();
+	opa.iTeardownMyApp();
 });
