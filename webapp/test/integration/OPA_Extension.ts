@@ -3,6 +3,9 @@
 
 import Opa5 from "sap/ui/test/Opa5";
 
+type FunctionsMap = Record<string, Function>;
+export type PageFunctions = Record<string, FunctionsMap> & Opa5;
+
 export default class OPA_Extension {
 	static createPageObjects_NEW_OVERLOAD(onName: string, Actions: Function, Assertions: Function) {
 		const configObject: {[name: string]: {actions: Record<string, () => {}>, assertions: Record<string, () => {}>}} = {};
