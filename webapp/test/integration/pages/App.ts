@@ -1,10 +1,11 @@
-import Opa5 from "sap/ui/test/Opa5";
+import Opa5, { PageObjectDefinition } from "sap/ui/test/Opa5";
 import Press from "sap/ui/test/actions/Press";
 import OPA_Extension from "../OPA_Extension"; // TODO: will will no longer be needed once a standard Opa5 call is there
+import { Common } from "./Common";
 
 const viewName = "ui5.typescript.helloworld.view.App";
 
-export class AppPageActions extends Opa5 {
+export class AppPageActions extends Common {
 	and: AppPageActions // TODO: will no longer be needed in the future (probably with the 1.115 types)
 
 	iPressTheSayHelloWithDialogButton() {
@@ -55,5 +56,11 @@ export class AppPageAssertions extends Opa5 {
 	}
 }
 
+const appPageDefinition: PageObjectDefinition = {
+	baseClass: Common,
+	actions: AppPageActions,
+	assertions: AppPageAssertions
+};
+
 // TODO: new API in OPA, this will be a regular Opa5 call
-OPA_Extension.createPageObjects_NEW_OVERLOAD("onTheAppPage", AppPageActions, AppPageAssertions);
+OPA_Extension.createPageObjects_NEW_OVERLOAD({"onTheAppPage": appPageDefinition});
