@@ -15,6 +15,9 @@ opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then:
 		}
 	});
 
+	// call a testLib action
+	When.onTheAppPage.myTestLib.onHeader().headerAction1();
+
 	//Actions
 	When.onTheAppPage.iPressTheSayHelloWithDialogButton();
 
