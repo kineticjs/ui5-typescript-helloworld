@@ -1,19 +1,25 @@
-import Opa5 from "sap/ui/test/Opa5";
+import Opa5, { MultiControlSelector, SingleControlSelector } from "sap/ui/test/Opa5";
 import Press from "sap/ui/test/actions/Press";
 //import OPA_Extension from "../OPA_Extension"; // TODO: will will no longer be needed once a standard Opa5 call is there
 
 const viewName = "ui5.typescript.helloworld.view.App";
 
-export class AppPageActions extends Opa5 {
-	//and: AppPageActions // TODO: will no longer be needed in the future (probably with the 1.115 types)
+// this class can be defined in the framework
+class Actions<T extends Opa5> extends Opa5 {
+	waitFor(options: SingleControlSelector | MultiControlSelector): this & {and: T} {
+	  const res = Object.assign({}, this, {and: this as unknown as T});
+	  return res;
+	 }
+  }
 
+export class AppPageActions extends Actions<AppPageActions> {
 	iPressTheSayHelloWithDialogButton() {
 		return this.waitFor({
 			id: "helloButton",
 			viewName,
 			actions: new Press(),
 			errorMessage: "Did not find the 'Say Hello With Dialog' button on the App view"
-		}) //as AppPageActions & jQuery.Promise; // TODO: will no longer be needed in the future (probably with the 1.115 types)
+		});
 	}
 
 	iPressTheOkButtonInTheDialog() {
@@ -23,7 +29,7 @@ export class AppPageActions extends Opa5 {
 			viewName,
 			actions: new Press(),
 			errorMessage: "Did not find the 'OK' button in the Dialog"
-		}) //as AppPageActions & jQuery.Promise; // TODO: will no longer be needed in the future (probably with the 1.115 types)
+		});
 	}
 }
 
