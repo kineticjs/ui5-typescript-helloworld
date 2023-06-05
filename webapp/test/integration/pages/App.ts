@@ -55,5 +55,5 @@ export class AppPageAssertions extends Opa5 {
 	}
 }
 
-Opa5.createPageObjects({"onTheAppPage": {actions: AppPageActions, assertions: AppPageAssertions}});
+//Opa5.createPageObjects({"onTheAppPage": {actions: AppPageActions, assertions: AppPageAssertions}});
 //OPA_Extension.createPageObjects_NEW_OVERLOAD("onTheAppPage", AppPageActions, AppPageAssertions);

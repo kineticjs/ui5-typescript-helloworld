@@ -3,8 +3,14 @@ import opaTest from "sap/ui/test/opaQunit";
 import Opa5 from "sap/ui/test/Opa5";
 import { When, Then } from "./pages/AllPages";
 import "./pages/App";
+import OPA_Extension from "./pages/OPA_Extension";
 
 QUnit.module("Hello");
+
+OPA_Extension.extendConfig({
+	actions: When,
+	assertions: Then
+});
 
 opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
 
