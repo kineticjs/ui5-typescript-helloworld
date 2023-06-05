@@ -9,11 +9,13 @@ QUnit.module("Hello");
 opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
 
 	// Arrangements
-	Given.iStartMyUIComponent({
+	/* Given.iStartMyUIComponent({
 		componentConfig: {
 			name: "ui5.typescript.helloworld"
 		}
-	});
+	}); */
+	// calls a baseClass function
+	When.onTheAppPage.iStartTheApp();
 
 	//Actions
 	When.onTheAppPage.iPressTheSayHelloWithDialogButton();
