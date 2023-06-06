@@ -4,15 +4,6 @@
 import Opa5 from "sap/ui/test/Opa5";
 
 export default class OPA_Extension {
-	static createPageObjects_NEW_OVERLOAD(onName: string, Actions: Function, Assertions: Function) {
-		const configObject: {[name: string]: {actions: Record<string, () => {}>, assertions: Record<string, () => {}>}} = {};
-		configObject[onName] = {
-			actions: convert(Actions),
-			assertions: convert(Assertions)
-		}
-		Opa5.createPageObjects(configObject);
-	}
-
 	static extendConfig(config: {actions: any, assertions: any}) {
 		const pageDefinition: Record<string, any> = {};
 
@@ -29,18 +20,7 @@ export default class OPA_Extension {
 			});
 		});
 
-		Object.keys(pageDefinition).map(onName => {
-			this.createPageObjects_NEW_OVERLOAD(onName, pageDefinition[onName].actions, pageDefinition[onName].assertions);
-		})
+		Opa5.createPageObjects(pageDefinition);
 	}
 }
 
-function convert(Methods: Function): Record<string, () => {}> {
-	const dictionary: Record<string, () => {}> = {}
-	Object.getOwnPropertyNames(Methods.constructor.prototype)
-		.filter(name => name !== 'constructor' && typeof Methods.constructor.prototype[name] === 'function')
-		.map(name => {
-			dictionary[name] = Methods.constructor.prototype[name]
-		})
-	return dictionary
-}
