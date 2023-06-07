@@ -10,7 +10,13 @@ const onTheAppPage = new AppPage();
 
 Opa5.extendConfig({
 	viewNamespace: "ui5.typescript.helloworld.view.",
-	autoWait: true
+	autoWait: true/* ,
+	testLibs: {
+		testLib: {}
+	},
+	testLibBase: {
+		testLib: TestLib
+	} */
 });
 
 opaTest("Should open the Hello dialog", function (opa: Opa5) {
@@ -21,6 +27,8 @@ opaTest("Should open the Hello dialog", function (opa: Opa5) {
 			name: "ui5.typescript.helloworld"
 		}
 	});
+
+	onTheAppPage.testLib.actions.action1();
 
 	//Actions
 	onTheAppPage.iPressTheSayHelloWithDialogButton();
