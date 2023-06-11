@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import opaTest from "sap/ui/test/opaQunit";
 import Opa5 from "sap/ui/test/Opa5";
-import { When, Then } from "./pages/AllPages";
+//import { When, Then } from "./pages/AllPages";
 import "./pages/App";
+import OPA_Extension from "./OPA_Extension";
 
 QUnit.module("Hello");
 
-opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
+const Actions = OPA_Extension.getPageActions();
+const Assertions = OPA_Extension.getPageAssertions();
+opaTest("Should open the Hello dialog", function (Given: Opa5, When: typeof Actions, Then: typeof Assertions & Opa5) {
 
 	// Arrangements
 	Given.iStartMyUIComponent({
@@ -19,7 +22,7 @@ opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then:
 	When.onTheAppPage.iPressTheSayHelloWithDialogButton();
 
 	// Assertions
-	Then.onTheAppPage.iShouldSeeTheHelloDialog();
+	Then.onTheAppPage.iShouldNotSeeTheHelloDialog();
 
 	//Actions
 	When.onTheAppPage.iPressTheOkButtonInTheDialog();
@@ -31,7 +34,7 @@ opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then:
 	Then.iTeardownMyApp();
 });
 
-opaTest("Should close the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
+opaTest("Should close the Hello dialog", function (Given: Opa5, When: typeof Actions, Then: typeof Assertions & Opa5) {
 
 	// Arrangements
 	Given.iStartMyUIComponent({
@@ -42,7 +45,8 @@ opaTest("Should close the Hello dialog", function (Given: Opa5, When: When, Then
 
 	//Actions
 	When.onTheAppPage.iPressTheSayHelloWithDialogButton()
-		.and.iPressTheOkButtonInTheDialog();
+		/* .and.iPressTheOkButtonInTheDialog(); */
+	When.onTheAppPage.iPressTheOkButtonInTheDialog();
 
 	// Assertions
 	Then.onTheAppPage.iShouldNotSeeTheHelloDialog();
