@@ -1,13 +1,14 @@
 import Opa5 from "sap/ui/test/Opa5";
 import Press from "sap/ui/test/actions/Press";
+import { Common } from "./Common";
 //import OPA_Extension from "../OPA_Extension"; // TODO: will will no longer be needed once a standard Opa5 call is there
 
 const viewName = "ui5.typescript.helloworld.view.App";
 
-export class AppPageActions extends Opa5 {
+export class AppPageActions extends Common {
 	//and: AppPageActions // TODO: will no longer be needed in the future (probably with the 1.115 types)
 
-	iPressTheSayHelloWithDialogButton() {
+	static iPressTheSayHelloWithDialogButton() {
 		return this.waitFor({
 			id: "helloButton",
 			viewName,
@@ -16,7 +17,7 @@ export class AppPageActions extends Opa5 {
 		}) //as AppPageActions & jQuery.Promise; // TODO: will no longer be needed in the future (probably with the 1.115 types)
 	}
 
-	iPressTheOkButtonInTheDialog() {
+	static iPressTheOkButtonInTheDialog() {
 		return this.waitFor({
 			controlType: "sap.m.Button",
 			searchOpenDialogs: true,
@@ -31,7 +32,7 @@ export class AppPageActions extends Opa5 {
 export class AppPageAssertions extends Opa5 {
 	//and: AppPageAssertions
 
-	iShouldSeeTheHelloDialog() {
+	static iShouldSeeTheHelloDialog() {
 		return this.waitFor({
 			controlType: "sap.m.Dialog",
 			success: function () {
@@ -42,7 +43,7 @@ export class AppPageAssertions extends Opa5 {
 		}) //as AppPageAssertions & jQuery.Promise; // TODO: will no longer be needed in the future (probably with the 1.115 types)
 	}
 
-	iShouldNotSeeTheHelloDialog() {
+	static iShouldNotSeeTheHelloDialog() {
 		return this.waitFor({
 			controlType: "sap.m.App", // dummy, I just want a check function, where I can search the DOM. Probably there is a better way for a NEGATIVE test (NO dialog).
 			check: function() {
