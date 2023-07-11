@@ -1,18 +1,14 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import opaTest from "sap/ui/test/opaQunit";
 import Opa5 from "sap/ui/test/Opa5";
+import "./pages/AllPages";
 import { When, Then } from "./pages/AllPages";
 import "./pages/App";
-import OPA_Extension from "./pages/OPA_Extension";
+
 
 QUnit.module("Hello");
 
-OPA_Extension.extendConfig({
-	actions: When,
-	assertions: Then
-});
-
-opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then: Then) {
+opaTest("Should open the Hello dialog", function (Given: Opa5, When:  When, Then: Then) {
 
 	// Arrangements
 	Given.iStartMyUIComponent({
@@ -20,6 +16,8 @@ opaTest("Should open the Hello dialog", function (Given: Opa5, When: When, Then:
 			name: "ui5.typescript.helloworld"
 		}
 	});
+
+	When.onTheAppPage.baseAction();
 
 	//Actions
 	When.onTheAppPage.iPressTheSayHelloWithDialogButton();
