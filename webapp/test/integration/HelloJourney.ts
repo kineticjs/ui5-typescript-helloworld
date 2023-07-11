@@ -2,6 +2,7 @@
 import opaTest from "sap/ui/test/opaQunit";
 import Opa5 from "sap/ui/test/Opa5";
 import { When, Then } from "./pages/AllPages";
+import "./pages/AllPages";
 import "./pages/App";
 
 QUnit.module("Hello");
