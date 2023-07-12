@@ -1,6 +1,7 @@
 import Opa5 from "sap/ui/test/Opa5";
 import Press from "sap/ui/test/actions/Press";
 import OPA_Extension from "../OPA_Extension"; // TODO: will will no longer be needed once a standard Opa5 call is there
+import "../lib/TestLib";
 
 const viewName = "ui5.typescript.helloworld.view.App";
 
